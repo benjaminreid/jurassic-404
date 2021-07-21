@@ -1,7 +1,7 @@
 <script>
   export let name;
-  export let width;
-  export let height;
+  export let width = "auto";
+  export let height = "auto";
   export let left = 0;
   export let top = 0;
 

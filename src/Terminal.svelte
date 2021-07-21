@@ -151,7 +151,7 @@
   .container {
     --lineHeight: 26px;
     background-color: #0a2d7f;
-    padding: 8px;
+    padding: 16px;
     color: #ffffff;
     font-family: "MonoLisa", "Courier", sans-serif;
     font-size: 18px;
