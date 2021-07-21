@@ -1,10 +1,10 @@
 import App from "./App.svelte";
 
+const $root = document.createElement("div");
+document.body.appendChild($root);
+
 const app = new App({
-  target: document.body,
-  props: {
-    name: "world",
-  },
+  target: $root,
 });
 
 export default app;
