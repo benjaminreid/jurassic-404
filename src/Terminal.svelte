@@ -1,6 +1,7 @@
 <script>
   const BACKSPACE = 8;
   const RETURN = 13;
+  const MAX_ATTEMPTS = 3;
 
   let lines = [
     {
@@ -21,6 +22,8 @@
   ];
 
   let input = "";
+  let attempts = 0;
+  $: failed = attempts >= MAX_ATTEMPTS;
 
   function processInput() {
     if (input.length === 0) {
@@ -33,12 +36,34 @@
           addLine({ value: "commands: help, status, reboot, moff, trex" });
           break;
         default:
-          addLine({ value: "access: PERMISSION DENIED." });
+          handleFailedCommand();
           break;
       }
     }
 
     input = "";
+  }
+
+  function handleFailedCommand() {
+    attempts += 1;
+
+    if (attempts >= MAX_ATTEMPTS) {
+      showFailure();
+    } else {
+      addLine({ value: "access: PERMISSION DENIED." });
+    }
+  }
+
+  function showFailure() {
+    addLine({ value: "access: PERMISSION DENIED...and......" });
+
+    setTimeout(() => {
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          addLine({ value: "YOU DIDN'T SAY THE MAGIC WORD!" });
+        }, 25 * i);
+      }
+    }, 1000);
   }
 
   function addLine(line) {
@@ -56,6 +81,10 @@
   }
 
   function handleKeydown(event) {
+    if (attempts >= MAX_ATTEMPTS) {
+      return;
+    }
+
     const code = event.which;
 
     switch (code) {
@@ -83,13 +112,15 @@
       </li>
     {/each}
 
-    <li class="line">
-      <span class="prompt">&gt;</span>
-      <span class="input">
-        {input}
-      </span>
-      <span class="blinker" />
-    </li>
+    {#if !failed}
+      <li class="line">
+        <span class="prompt">&gt;</span>
+        <span class="input">
+          {input}
+        </span>
+        <span class="blinker" />
+      </li>
+    {/if}
   </ol>
 </div>
 
