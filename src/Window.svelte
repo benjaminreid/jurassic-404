@@ -6,9 +6,11 @@
   export let top = 0;
 
   let moving = false;
+  let zIndex = 1;
 
   function onMouseDown() {
     moving = true;
+    zIndex += 3;
   }
 
   function onMouseMove(e) {
@@ -25,7 +27,7 @@
 
 <div
   class="container"
-  style="width: {width}px; height: {height}px; left: {left}px; top: {top}px;"
+  style="width: {width}px; height: {height}px; left: {left}px; top: {top}px; z-index: {zIndex};"
 >
   <header on:mousedown={onMouseDown}>
     {name}
