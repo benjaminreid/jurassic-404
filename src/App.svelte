@@ -5,7 +5,7 @@
 </script>
 
 <Desktop>
-  <Window name="Central Park Control Console">
+  <Window name="Central Park Control Console" width={620} height={440}>
     <Terminal />
   </Window>
 </Desktop>

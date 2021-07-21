@@ -139,6 +139,7 @@
     font-family: "MonoLisa", "Courier", sans-serif;
     font-size: 18px;
     line-height: var(--lineHeight);
+    flex-grow: 1;
   }
 
   .lines {
@@ -149,7 +150,6 @@
 
   .line {
     display: flex;
-    height: var(--lineHeight);
   }
 
   .prompt {

@@ -1,8 +1,10 @@
 <script>
   export let name;
+  export let width;
+  export let height;
 </script>
 
-<div class="container">
+<div class="container" style="width: {width}px; height: {height}px;">
   <header>
     {name}
   </header>
@@ -13,6 +15,8 @@
   .container {
     --grey: #cccccc;
     border: solid 3px var(--grey);
+    display: flex;
+    flex-direction: column;
   }
 
   header {
