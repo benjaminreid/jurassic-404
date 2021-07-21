@@ -17,9 +17,12 @@
     border: solid 3px var(--grey);
     display: flex;
     flex-direction: column;
+    overflow: scroll;
   }
 
   header {
     background-color: var(--grey);
+    position: sticky;
+    top: 0;
   }
 </style>
