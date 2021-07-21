@@ -1,5 +1,6 @@
 <script>
   const BACKSPACE = 8;
+  const RETURN = 13;
 
   let lines = [
     {
@@ -8,9 +9,41 @@
     {
       value: "Version 4.0.5, Alpha E",
     },
+    {
+      value: "Ready...",
+    },
+    {
+      value: "Park offline, reboot required",
+    },
+    {
+      value: "Session restored - type help for command list",
+    },
   ];
 
   let input = "";
+
+  function processInput() {
+    if (input.length === 0) {
+      addLine({ value: "command not found. type help for command list" });
+    } else {
+      const [command] = input.split(" ");
+
+      switch (command) {
+        case "help":
+          addLine({ value: "commands: help, status, reboot, moff, trex" });
+          break;
+        default:
+          addLine({ value: "access: PERMISSION DENIED." });
+          break;
+      }
+    }
+
+    input = "";
+  }
+
+  function addLine(line) {
+    lines = [...lines, line];
+  }
 
   function addToInput(key) {
     if (/^[a-z0-9\s]$/i.test(key)) {
@@ -28,6 +61,10 @@
     switch (code) {
       case BACKSPACE:
         removeCharacterFromInput();
+        break;
+
+      case RETURN:
+        processInput();
         break;
 
       default:
