@@ -1,5 +1,7 @@
 <div class="desktop">
-  <slot />
+  <div class="wrapper">
+    <slot />
+  </div>
 </div>
 
 <style>
@@ -11,5 +13,11 @@
     bottom: 0;
     left: 0;
     z-index: 2147483647;
+  }
+
+  .wrapper {
+    max-width: 1024px;
+    margin: 0 auto;
+    position: relative;
   }
 </style>
