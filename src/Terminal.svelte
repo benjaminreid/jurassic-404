@@ -35,6 +35,11 @@
         case "help":
           addLine({ value: "commands: help, status, reboot, moff, trex" });
           break;
+        case "status":
+          addLine({ value: "phones offline" });
+          addLine({ value: "perimeter fences down" });
+          addLine({ value: "security systems de-activated" });
+          break;
         default:
           handleFailedCommand();
           break;
