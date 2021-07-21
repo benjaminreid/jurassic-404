@@ -1,4 +1,6 @@
 <script>
+  const BACKSPACE = 8;
+
   let lines = [
     {
       value: "Jurassic Park, System Security Interface",
@@ -9,7 +11,32 @@
   ];
 
   let input = "";
+
+  function addToInput(key) {
+    if (/^[a-z0-9\s]$/i.test(key)) {
+      input += key;
+    }
+  }
+
+  function removeCharacterFromInput() {
+    input = input.slice(0, -1);
+  }
+
+  function handleKeydown(event) {
+    const code = event.which;
+
+    switch (code) {
+      case BACKSPACE:
+        removeCharacterFromInput();
+        break;
+
+      default:
+        addToInput(event.key);
+    }
+  }
 </script>
+
+<svelte:window on:keydown={handleKeydown} />
 
 <div class="container">
   <ol class="lines">
@@ -60,6 +87,10 @@
   .prompt {
     display: block;
     margin-right: 4px;
+  }
+
+  .input {
+    white-space: pre;
   }
 
   .blinker {
