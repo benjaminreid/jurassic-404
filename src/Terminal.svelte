@@ -26,6 +26,8 @@
   $: failed = attempts >= MAX_ATTEMPTS;
 
   function processInput() {
+    addLine({ value: input, type: "prompt" });
+
     if (input.length === 0) {
       addLine({ value: "command not found. type help for command list" });
     } else {
@@ -113,7 +115,10 @@
   <ol class="lines">
     {#each lines as line}
       <li class="line">
-        {line.value}
+        {#if line.type === "prompt"}
+          <span class="prompt">&gt;</span>
+        {/if}
+        <span class="input">{line.value}</span>
       </li>
     {/each}
 
