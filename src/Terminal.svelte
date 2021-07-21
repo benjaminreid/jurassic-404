@@ -1,4 +1,6 @@
 <script>
+  import { afterUpdate } from "svelte";
+
   const BACKSPACE = 8;
   const RETURN = 13;
   const MAX_ATTEMPTS = 3;
@@ -21,9 +23,14 @@
     },
   ];
 
+  let container;
   let input = "";
   let attempts = 0;
   $: failed = attempts >= MAX_ATTEMPTS;
+
+  afterUpdate(() => {
+    container.scrollTop = container.scrollHeight;
+  });
 
   function processInput() {
     addLine({ value: input, type: "prompt" });
@@ -111,7 +118,7 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class="container">
+<div class="container" bind:this={container}>
   <ol class="lines">
     {#each lines as line}
       <li class="line">
@@ -152,6 +159,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column-reverse;
+    overflow: scroll;
   }
 
   .lines {
