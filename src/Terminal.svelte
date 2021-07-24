@@ -45,7 +45,7 @@
     if (input.length === 0) {
       addLine({ value: "command not found. type help for command list" });
     } else {
-      const [command, arg1] = input.split(" ");
+      const [command, arg1, arg2] = input.split(" ");
 
       switch (command) {
         case "help":
@@ -71,6 +71,15 @@
             });
           } else {
             handleFailedCommand();
+          }
+          break;
+        case "sudo":
+          if (arg1 === "reboot" && arg2 === "all") {
+            parkStatus.fences = true;
+            parkStatus.phones = true;
+            parkStatus.security = true;
+            printSystemStatus();
+            rebootPark();
           }
           break;
         case "moff":
