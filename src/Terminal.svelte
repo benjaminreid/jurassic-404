@@ -6,7 +6,7 @@
   const MAX_ATTEMPTS = 3;
   const parkStatus = {
     phones: false,
-    perimeter: false,
+    fences: false,
     security: false,
   };
 
@@ -61,6 +61,14 @@
           if (Object.keys(parkStatus).includes(arg1)) {
             parkStatus[arg1] = true;
             printSystemStatus();
+
+            if (Object.values(parkStatus).every((val) => val === true)) {
+              rebootPark();
+            }
+          } else if (typeof arg1 === "undefined") {
+            addLine({
+              value: "missing parameter, try reboot <system> or status",
+            });
           } else {
             handleFailedCommand();
           }
@@ -74,17 +82,24 @@
     input = "";
   }
 
+  function rebootPark() {
+    addLine({
+      value: "Jurassic Park is back online!",
+      type: "success",
+    });
+  }
+
   function printSystemStatus() {
     addLine({
-      value: "phones offline",
+      value: "phones: offline",
       type: parkStatus.phones ? "success" : "error",
     });
     addLine({
-      value: "perimeter fences down",
-      type: parkStatus.perimeter ? "success" : "error",
+      value: "fences: electricity de-activated",
+      type: parkStatus.fences ? "success" : "error",
     });
     addLine({
-      value: "security systems de-activated",
+      value: "security: systems malfunction",
       type: parkStatus.security ? "success" : "error",
     });
   }
