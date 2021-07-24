@@ -1,4 +1,5 @@
 <script>
+  import BackgroundMusic from "./BackgroundMusic.svelte";
   import Desktop from "./Desktop.svelte";
   import Terminal from "./Terminal.svelte";
   import Window from "./Window.svelte";
@@ -24,3 +25,5 @@
     <Terminal />
   </Window>
 </Desktop>
+
+<BackgroundMusic />
