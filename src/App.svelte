@@ -56,7 +56,7 @@
         <track kind="captions" />
       </video>
     </Window>
+  {:else}
+    <BackgroundMusic />
   {/if}
 </Desktop>
-
-<BackgroundMusic />
