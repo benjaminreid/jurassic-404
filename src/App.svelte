@@ -3,12 +3,22 @@
   import Desktop from "./Desktop.svelte";
   import Terminal from "./Terminal.svelte";
   import Window from "./Window.svelte";
+
+  let parkOnline = false;
+
+  function handleCommand(event) {
+    switch (event.detail.type) {
+      case "park-rebooted":
+        parkOnline = true;
+        break;
+    }
+  }
 </script>
 
 <Desktop>
   <Window name="Jungle Babes 1947 by Al Moore" left={565} top={235}>
     <img
-      src="http://nouveller.com/static/img/404/jungle-babe.jpg"
+      src="https://jurassic-404.s3.eu-west-2.amazonaws.com/jungle-babe.jpg"
       alt="Jungle Babes by Al Moore"
       width="350"
       height="400"
@@ -22,8 +32,31 @@
     left={-20}
     top={135}
   >
-    <Terminal />
+    <Terminal on:command={handleCommand} />
   </Window>
+
+  {#if parkOnline}
+    <Window
+      name="Jurassic Park CCTV"
+      width={640}
+      height={360}
+      top={90}
+      left={200}
+    >
+      <video
+        autoplay
+        width="640"
+        height="360"
+        poster="https://jurassic-404.s3.eu-west-2.amazonaws.com/jp-back-in-business.jpg"
+      >
+        <source
+          src="https://jurassic-404.s3.eu-west-2.amazonaws.com/jp-back-in-business.webm"
+          type="video/webm"
+        />
+        <track kind="captions" />
+      </video>
+    </Window>
+  {/if}
 </Desktop>
 
 <BackgroundMusic />

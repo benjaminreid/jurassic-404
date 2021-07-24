@@ -1,5 +1,7 @@
 <script>
-  import { afterUpdate } from "svelte";
+  import { afterUpdate, createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
 
   const BACKSPACE = 8;
   const RETURN = 13;
@@ -101,6 +103,10 @@
     addLine({
       value: "Jurassic Park is back online!",
       type: "success",
+    });
+
+    dispatch("command", {
+      type: "park-rebooted",
     });
   }
 

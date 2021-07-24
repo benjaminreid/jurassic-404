@@ -5,6 +5,7 @@
   export let left = 0;
   export let top = 0;
 
+  const HEADER_HEIGHT = 27;
   let moving = false;
   let zIndex = 1;
 
@@ -27,7 +28,8 @@
 
 <div
   class="container"
-  style="width: {width}px; height: {height}px; left: {left}px; top: {top}px; z-index: {zIndex};"
+  style="width: {width}px; height: {height +
+    HEADER_HEIGHT}px; left: {left}px; top: {top}px; z-index: {zIndex};"
 >
   <header on:mousedown={onMouseDown}>
     {name}
@@ -40,6 +42,7 @@
 <style>
   .container {
     --grey: #cccccc;
+    background-color: var(--grey);
     border: solid 5px var(--grey);
     box-shadow: 0 0 1px #000, 1px 1px 2px #000;
     display: flex;
@@ -70,6 +73,7 @@
   }
 
   header {
+    height: 27px;
     background-color: var(--grey);
     cursor: move;
     user-select: none;
