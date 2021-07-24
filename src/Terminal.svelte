@@ -17,9 +17,11 @@
     },
     {
       value: "Park offline, reboot required",
+      type: "error",
     },
     {
       value: "Session restored - type help for command list",
+      type: "notice",
     },
   ];
 
@@ -42,7 +44,10 @@
 
       switch (command) {
         case "help":
-          addLine({ value: "commands: help, status, reboot, moff, trex" });
+          addLine({
+            value: "commands: help, status, reboot, moff, trex",
+            type: "notice",
+          });
           break;
         case "status":
           addLine({ value: "phones offline" });
@@ -121,7 +126,7 @@
 <div class="container" bind:this={container}>
   <ol class="lines">
     {#each lines as line}
-      <li class="line">
+      <li class="line line-{line.type ?? 'default'}">
         {#if line.type === "prompt"}
           <span class="prompt">&gt;</span>
         {/if}
@@ -170,6 +175,14 @@
 
   .line {
     display: flex;
+  }
+
+  .line-error {
+    color: #ff7272;
+  }
+
+  .line-notice {
+    color: #ccca23;
   }
 
   .prompt {
