@@ -74,10 +74,11 @@
 
   header {
     height: 27px;
+    line-height: 27px;
     background-color: var(--grey);
     cursor: move;
     user-select: none;
-    padding: 4px 8px;
+    padding: 0 8px;
     font-family: "MonoLisa", "Courier", sans-serif;
     font-size: 13px;
     font-weight: bold;
