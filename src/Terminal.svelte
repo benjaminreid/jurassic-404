@@ -76,6 +76,9 @@
         case "moff":
           window.open("https://www.youtube.com/watch?v=P8EBKPuKdR4", "_blank");
           break;
+        case "trex":
+          window.open("https://www.youtube.com/watch?v=--40RLF5UGo", "_blank");
+          break;
         default:
           handleFailedCommand();
           break;
