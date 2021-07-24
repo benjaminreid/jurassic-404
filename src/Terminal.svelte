@@ -4,6 +4,11 @@
   const BACKSPACE = 8;
   const RETURN = 13;
   const MAX_ATTEMPTS = 3;
+  const parkStatus = {
+    phones: false,
+    perimeter: false,
+    security: false,
+  };
 
   let lines = [
     {
@@ -40,7 +45,7 @@
     if (input.length === 0) {
       addLine({ value: "command not found. type help for command list" });
     } else {
-      const [command] = input.split(" ");
+      const [command, arg1] = input.split(" ");
 
       switch (command) {
         case "help":
@@ -50,9 +55,15 @@
           });
           break;
         case "status":
-          addLine({ value: "phones offline" });
-          addLine({ value: "perimeter fences down" });
-          addLine({ value: "security systems de-activated" });
+          printSystemStatus();
+          break;
+        case "reboot":
+          if (Object.keys(parkStatus).includes(arg1)) {
+            parkStatus[arg1] = true;
+            printSystemStatus();
+          } else {
+            handleFailedCommand();
+          }
           break;
         default:
           handleFailedCommand();
@@ -61,6 +72,21 @@
     }
 
     input = "";
+  }
+
+  function printSystemStatus() {
+    addLine({
+      value: "phones offline",
+      type: parkStatus.phones ? "success" : "error",
+    });
+    addLine({
+      value: "perimeter fences down",
+      type: parkStatus.perimeter ? "success" : "error",
+    });
+    addLine({
+      value: "security systems de-activated",
+      type: parkStatus.security ? "success" : "error",
+    });
   }
 
   function handleFailedCommand() {
@@ -183,6 +209,10 @@
 
   .line-notice {
     color: #ccca23;
+  }
+
+  .line-success {
+    color: #4dd84d;
   }
 
   .prompt {
