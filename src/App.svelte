@@ -6,6 +6,7 @@
   import Window from "./Window.svelte";
 
   let parkOnline = false;
+  let show = true;
 
   function handleCommand(event) {
     switch (event.detail.type) {
@@ -14,52 +15,58 @@
         break;
     }
   }
+
+  function shutdown() {
+    show = false;
+  }
 </script>
 
-<Desktop>
-  <Window name="Jungle Babes 1947 by Al Moore" left={565} top={235}>
-    <img
-      src="https://jurassic-404.s3.eu-west-2.amazonaws.com/jungle-babe.jpg"
-      alt="Jungle Babes by Al Moore"
-      width="350"
-      height="400"
-    />
-  </Window>
-
-  <Window
-    name="Central Park Control Console"
-    width={620}
-    height={440}
-    left={-20}
-    top={135}
-  >
-    <Terminal on:command={handleCommand} />
-  </Window>
-
-  <Credits />
-
-  {#if parkOnline}
-    <Window
-      name="Jurassic Park CCTV"
-      width={640}
-      height={360}
-      top={90}
-      left={200}
-    >
-      <video
-        autoplay
-        width="640"
-        height="360"
-        poster="https://jurassic-404.s3.eu-west-2.amazonaws.com/jp-back-in-business.jpg"
-      >
-        <source
-          src="https://jurassic-404.s3.eu-west-2.amazonaws.com/jp-back-in-business.webm"
-          type="video/webm"
-        />
-        <track kind="captions" />
-      </video>
+{#if show}
+  <Desktop on:close={shutdown}>
+    <Window name="Jungle Babes 1947 by Al Moore" left={565} top={235}>
+      <img
+        src="https://jurassic-404.s3.eu-west-2.amazonaws.com/jungle-babe.jpg"
+        alt="Jungle Babes by Al Moore"
+        width="350"
+        height="400"
+      />
     </Window>
-  {:else}
-    <BackgroundMusic />
-  {/if}
-</Desktop>
+
+    <Window
+      name="Central Park Control Console"
+      width={620}
+      height={440}
+      left={-20}
+      top={135}
+    >
+      <Terminal on:command={handleCommand} />
+    </Window>
+
+    <Credits />
+
+    {#if parkOnline}
+      <Window
+        name="Jurassic Park CCTV"
+        width={640}
+        height={360}
+        top={90}
+        left={200}
+      >
+        <video
+          autoplay
+          width="640"
+          height="360"
+          poster="https://jurassic-404.s3.eu-west-2.amazonaws.com/jp-back-in-business.jpg"
+        >
+          <source
+            src="https://jurassic-404.s3.eu-west-2.amazonaws.com/jp-back-in-business.webm"
+            type="video/webm"
+          />
+          <track kind="captions" />
+        </video>
+      </Window>
+    {:else}
+      <BackgroundMusic />
+    {/if}
+  </Desktop>
+{/if}
