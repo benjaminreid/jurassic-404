@@ -13,5 +13,5 @@ Originally created on a hack evening with [@iamkeir](https://twitter.com/iamkeir
 Include this script tag anywhere on your site!
 
 ```html
-<script defer src="https://unpkg.com/@benjaminreid/jurassic-404@1.0.0/public/build/bundle.js">
+<script defer src="https://unpkg.com/@benjaminreid/jurassic-404">
 ```
