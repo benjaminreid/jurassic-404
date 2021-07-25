@@ -4,6 +4,10 @@
 
 Originally created on a hack evening with [https://twitter.com/iamkeir](@iamkeir), this is something fun to add to your 404 pages (or any page for that) matter if you have a penchant for Jurassic Park.
 
+## Demo
+
+[View demo](https://jurassic-404.netlify.app/)
+
 ## Add to your site
 
 Include this script tag anywhere on your site!
