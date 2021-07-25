@@ -1,5 +1,6 @@
 <script>
   import BackgroundMusic from "./BackgroundMusic.svelte";
+  import Credits from "./Credits.svelte";
   import Desktop from "./Desktop.svelte";
   import Terminal from "./Terminal.svelte";
   import Window from "./Window.svelte";
@@ -34,6 +35,8 @@
   >
     <Terminal on:command={handleCommand} />
   </Window>
+
+  <Credits />
 
   {#if parkOnline}
     <Window

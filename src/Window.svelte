@@ -4,6 +4,7 @@
   export let height = "auto";
   export let left = 0;
   export let top = 0;
+  export let position = "absolute";
 
   const HEADER_HEIGHT = 27;
   let moving = false;
@@ -29,7 +30,7 @@
 <div
   class="container"
   style="width: {width}px; height: {height +
-    HEADER_HEIGHT}px; left: {left}px; top: {top}px; z-index: {zIndex};"
+    HEADER_HEIGHT}px; left: {left}px; top: {top}px; position: {position}; z-index: {zIndex};"
 >
   <header on:mousedown={onMouseDown}>
     {name}
@@ -47,7 +48,6 @@
     box-shadow: 0 0 1px #000, 1px 1px 2px #000;
     display: flex;
     flex-direction: column;
-    position: absolute;
   }
 
   .container::before {
