@@ -21,6 +21,7 @@
 
 <style>
   .desktop {
+    all: initial;
     background-color: rgba(156, 156, 206, 0.7);
     position: fixed;
     top: 0;

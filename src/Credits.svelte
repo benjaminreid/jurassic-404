@@ -3,7 +3,7 @@
 </script>
 
 <div class="credits">
-  <Window name="Credits" position="relative" width={270} height={75}>
+  <Window name="Credits" position="relative" width={340} height={75}>
     <div class="background">
       <p>
         Brought to you by
@@ -40,12 +40,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px;
+    padding: 0 16px;
   }
 
   p {
     margin: 0;
     text-align: center;
+    font-family: "MonoLisa", "Courier", sans-serif;
   }
 
   a {
