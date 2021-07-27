@@ -139,6 +139,12 @@
     addLine({ value: "access: PERMISSION DENIED...and......" });
 
     setTimeout(() => {
+      dispatch("command", {
+        type: "fail",
+      });
+    }, 1000);
+
+    setTimeout(() => {
       for (let i = 0; i < 30; i++) {
         setTimeout(() => {
           addLine({ value: "YOU DIDN'T SAY THE MAGIC WORD!" });

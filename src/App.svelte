@@ -1,17 +1,22 @@
 <script>
   import BackgroundMusic from "./BackgroundMusic.svelte";
   import Credits from "./Credits.svelte";
+  import Dennis from "./Dennis.svelte";
   import Desktop from "./Desktop.svelte";
   import Terminal from "./Terminal.svelte";
   import Window from "./Window.svelte";
 
   let parkOnline = false;
   let show = true;
+  let failed = false;
 
   function handleCommand(event) {
     switch (event.detail.type) {
       case "park-rebooted":
         parkOnline = true;
+        break;
+      case "fail":
+        failed = true;
         break;
     }
   }
@@ -41,6 +46,10 @@
     >
       <Terminal on:command={handleCommand} />
     </Window>
+
+    {#if failed}
+      <Dennis />
+    {/if}
 
     <Credits />
 
