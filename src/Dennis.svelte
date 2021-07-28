@@ -11,7 +11,7 @@
   />
 </Window>
 
-<audio autoplay>
+<audio autoplay loop>
   <source
     src="https://jurassic-404.s3.eu-west-2.amazonaws.com/ah-ah-ah.mp3"
     type="audio/mp3"
