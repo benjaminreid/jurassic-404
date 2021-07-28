@@ -148,6 +148,10 @@
       for (let i = 0; i < 30; i++) {
         setTimeout(() => {
           addLine({ value: "YOU DIDN'T SAY THE MAGIC WORD!" });
+
+          if (i === 29) {
+            addLine({ value: `<a href="">Reboot and try again</a>` });
+          }
         }, 25 * i);
       }
     }, 1000);
@@ -198,7 +202,7 @@
         {#if line.type === "prompt"}
           <span class="prompt">&gt;</span>
         {/if}
-        <span class="input">{line.value}</span>
+        <span class="input">{@html line.value}</span>
       </li>
     {/each}
 
@@ -243,6 +247,11 @@
 
   .line {
     display: flex;
+  }
+
+  :global(.line a) {
+    color: white;
+    text-decoration: underline;
   }
 
   .line-error {
